@@ -152,3 +152,72 @@ Call to Action Button: `Listen Now` / `Hear Redemption Stories`
 > "**Lord, may this site not lift up human pride, but glorify You, drawing every visitor closer to Your redeeming love. Let every voice heard here proclaim Your goodness and grace. Amen.**"
 
 ---
+
+# Redemption Voices Development
+
+A progressive web application for church community engagement and worship resources.
+
+## Technologies Used
+
+### Frontend Framework
+- Ionic Framework (Core)
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+
+### Progressive Web App (PWA) Features
+- Service Workers for offline functionality
+- Web App Manifest
+- iOS-specific meta tags
+- Responsive design for mobile devices
+
+### Development Tools
+- Visual Studio Code
+- Git for version control
+
+### CDN Dependencies
+- Ionic Core (`@ionic/core`)
+- Ionic Icons
+
+### Mobile Optimization
+- Safe area insets for modern mobile devices
+- Touch event optimization
+- Platform-specific CSS adjustments (iOS/Android)
+
+## Setup Instructions
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/redemeptionvoices.git
+```
+
+2. Open the project in a web server or use VS Code's Live Server extension
+
+3. For development, ensure you have:
+   - Modern web browser (Chrome, Safari, Firefox)
+   - Visual Studio Code
+   - Live Server extension (optional)
+
+## Project Structure
+```
+redemeptionvoices/
+├── css/
+│   └── style.css
+├── js/
+│   └── service-worker.js
+├── index.html
+├── manifest.json
+└── README.md
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
