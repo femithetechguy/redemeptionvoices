@@ -1,83 +1,76 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Handle menu items click
-    const menuItems = document.querySelectorAll('ion-item[href^="#"]');
-    menuItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-            e.preventDefault();
-            const menu = document.querySelector('ion-menu');
-            menu.close();
-            
-            // Navigate to section
-            const target = e.target.closest('ion-item').getAttribute('href');
-            loadContent(target.substring(1));
+import AudioPlayer from './audio-player.js';
+
+class App {
+    constructor() {
+        this.audioPlayer = null;
+        this.initialize();
+    }
+
+    initialize() {
+        document.addEventListener('DOMContentLoaded', () => {
+            this.setupYear();
+            this.setupAudio();
+            this.setupRouting();
         });
-    });
+    }
 
-    // Check if app is installed
-    let deferredPrompt;
-    const installButton = document.querySelector('#installButton');
-    
-    window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        installButton?.classList.remove('hidden');
-    });
+    setupAudio() {
+        if (document.getElementById('mainAudio')) {
+            this.audioPlayer = new AudioPlayer();
+        }
+    }
 
-    // Validate service worker
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/service-worker.js')
-            .then(registration => {
-                console.log('SW registered:', registration);
-            })
-            .catch(error => {
-                console.log('SW registration failed:', error);
+    setupYear() {
+        const yearElement = document.getElementById('currentYear');
+        if (yearElement) {
+            yearElement.textContent = new Date().getFullYear();
+        }
+    }
+
+    setupRouting() {
+        const menuItems = document.querySelectorAll('ion-menu ion-item');
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const href = item.getAttribute('href');
+                this.handleNavigation(href);
             });
+        });
     }
 
-    // Check online status
-    window.addEventListener('online', updateOnlineStatus);
-    window.addEventListener('offline', updateOnlineStatus);
+    handleNavigation(route) {
+        // Update sections array to include about-content
+        const sections = ['messages-content', 'choir-content', 'bible-content', 'prayer-content', 'contact-content', 'about-content'];
+        sections.forEach(id => {
+            document.getElementById(id).style.display = 'none';
+        });
 
-    function updateOnlineStatus(event) {
-        const condition = navigator.onLine ? 'online' : 'offline';
-        const statusElement = document.querySelector('#connectionStatus');
-        if (statusElement) {
-            statusElement.className = condition;
-            statusElement.textContent = condition.toUpperCase();
+        // Show selected section
+        switch(route) {
+            case '#messages':
+                document.getElementById('messages-content').style.display = 'block';
+                break;
+            case '#choir':
+                document.getElementById('choir-content').style.display = 'block';
+                break;
+            case '#bible':
+                document.getElementById('bible-content').style.display = 'block';
+                // Remove loadBibleContent() call since we're using iframe
+                break;
+            case '#prayer':
+                document.getElementById('prayer-content').style.display = 'block';
+                break;
+            case '#contact':
+                document.getElementById('contact-content').style.display = 'block';
+                break;
+            case '#about':
+                document.getElementById('about-content').style.display = 'block';
+                break;
         }
-    }
 
-    // Validate Ionic components
-    customElements.whenDefined('ion-app').then(() => {
-        console.log('Ionic components loaded');
-    });
-});
-
-// Content loading function
-async function loadContent(section) {
-    const contentOutlet = document.querySelector('ion-router-outlet');
-    contentOutlet.innerHTML = `
-        <ion-content class="fade-in">
-            <div class="content-container">
-                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
-            </div>
-        </ion-content>
-    `;
-
-    try {
-        const response = await fetch(`/sections/${section}.html`);
-        if (response.ok) {
-            const content = await response.text();
-            contentOutlet.innerHTML = `
-                <ion-content class="fade-in">
-                    <div class="content-container">
-                        ${content}
-                    </div>
-                </ion-content>
-            `;
-        }
-    } catch (error) {
-        console.error('Error loading content:', error);
+        // Close menu
+        document.querySelector('ion-menu').close();
     }
 }
+
+// Initialize app
+new App();
