@@ -686,3 +686,22 @@ ion-icon {
         padding: 16px;
     }
 }
+
+/* Footer Styles */
+.desktop-footer {
+    display: none;
+}
+
+/* Show footer only on larger screens */
+@media (min-width: 768px) {
+    .desktop-footer {
+        display: block;
+    }
+}
+
+/* Add padding to content to prevent footer overlap */
+@media (min-width: 768px) {
+    ion-content {
+        --padding-bottom: 56px;
+    }
+}
