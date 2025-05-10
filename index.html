@@ -1,165 +1,444 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, viewport-fit=cover">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, viewport-fit=cover" />
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Redemption Voices - A platform for church music, messages, testimonies, and choir resources. Join our community of worship and praise.">
-    <meta name="keywords" content="church music, christian songs, choir resources, testimonies, prayer requests, worship, praise, christian community">
-    <meta name="author" content="Tech Guy">
-    
+    <meta
+      name="description"
+      content="Redemption Voices - A platform for church music, messages, testimonies, and choir resources. Join our community of worship and praise."
+    />
+    <meta
+      name="keywords"
+      content="church music, christian songs, choir resources, testimonies, prayer requests, worship, praise, christian community"
+    />
+    <meta name="author" content="Tech Guy" />
+
     <!-- Open Graph Meta Tags for Social Media -->
-    <meta property="og:title" content="Redemption Voices - Church Music & Resources">
-    <meta property="og:description" content="Access church music, messages, testimonies, and choir resources. Join our community of worship and praise.">
-    <meta property="og:image" content="https://redemptionvoices.com/images/og-image.jpg">
-    <meta property="og:url" content="https://redemptionvoices.com">
-    <meta property="og:type" content="website">
-    
+    <meta
+      property="og:title"
+      content="Redemption Voices - Church Music & Resources"
+    />
+    <meta
+      property="og:description"
+      content="Access church music, messages, testimonies, and choir resources. Join our community of worship and praise."
+    />
+    <meta
+      property="og:image"
+      content="https://redemptionvoices.com/images/og-image.jpg"
+    />
+    <meta property="og:url" content="https://redemptionvoices.com" />
+    <meta property="og:type" content="website" />
+
     <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Redemption Voices - Church Music & Resources">
-    <meta name="twitter:description" content="Access church music, messages, testimonies, and choir resources. Join our community of worship and praise.">
-    <meta name="twitter:image" content="https://redemptionvoices.com/images/twitter-card.jpg">
-    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Redemption Voices - Church Music & Resources"
+    />
+    <meta
+      name="twitter:description"
+      content="Access church music, messages, testimonies, and choir resources. Join our community of worship and praise."
+    />
+    <meta
+      name="twitter:image"
+      content="https://redemptionvoices.com/images/twitter-card.jpg"
+    />
+
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://redemptionvoices.com">
-    
+    <link rel="canonical" href="https://redemptionvoices.com" />
+
     <!-- Mobile Meta Tags -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#4a90e2">
-    
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="theme-color" content="#4a90e2" />
+
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap"
+      as="style"
+    />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap"
+      as="style"
+    />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      as="style"
+    />
+
     <title>Redemption Voices - Church Music & Resources</title>
-    
+
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    
+    <link rel="stylesheet" href="css/style.css" />
+
     <!-- Ionic Framework -->
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
-    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"/>
-    
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"
+    />
+
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
     <ion-app>
-        <!-- Menu Component -->
-        <ion-menu side="start" content-id="main-content">
-            <ion-header>
-                <ion-toolbar color="primary">
-                    <ion-title>Menu</ion-title>
-                </ion-toolbar>
-            </ion-header>
+      <!-- Menu Component -->
+      <ion-menu side="start" content-id="main-content">
+        <ion-header>
+          <ion-toolbar color="primary">
+            <ion-title>Menu</ion-title>
+          </ion-toolbar>
+        </ion-header>
 
-            <ion-content>
-                <ion-list>
-                    <ion-item href="#home">
-                        <ion-icon slot="start" name="home"></ion-icon>
-                        <ion-label>Home</ion-label>
-                    </ion-item>
-                    <ion-item href="#messages">
-                        <ion-icon slot="start" name="chatbox"></ion-icon>
-                        <ion-label>Messages</ion-label>
-                    </ion-item>
-                    <ion-item href="#songs">
-                        <ion-icon slot="start" name="musical-notes"></ion-icon>
-                        <ion-label>Songs</ion-label>
-                    </ion-item>
-                    <ion-item href="#testimonies">
-                        <ion-icon slot="start" name="people"></ion-icon>
-                        <ion-label>Testimonies</ion-label>
-                    </ion-item>
-                    <ion-item href="#prayer">
-                        <ion-icon slot="start" name="heart"></ion-icon>
-                        <ion-label>Prayer Request</ion-label>
-                    </ion-item>
-                    <ion-item href="#choir">
-                        <ion-icon slot="start" name="library"></ion-icon>
-                        <ion-label>Choir Resources</ion-label>
-                    </ion-item>
-                    <ion-item href="#about">
-                        <ion-icon slot="start" name="information-circle"></ion-icon>
-                        <ion-label>About</ion-label>
-                    </ion-item>
-                    <ion-item href="#contact">
-                        <ion-icon slot="start" name="mail"></ion-icon>
-                        <ion-label>Contact</ion-label>
-                    </ion-item>
-                </ion-list>
-            </ion-content>
-        </ion-menu>
+        <ion-content>
+          <ion-list>
+            <ion-item href="#home">
+              <ion-icon slot="start" name="home"></ion-icon>
+              <ion-label>Home</ion-label>
+            </ion-item>
+            <ion-item href="#bible">
+              <ion-icon slot="start" name="book"></ion-icon>
+              <ion-label>Bible</ion-label>
+            </ion-item>
+            <ion-item href="#messages">
+              <ion-icon slot="start" name="chatbox"></ion-icon>
+              <ion-label>Messages</ion-label>
+            </ion-item>
+            <ion-item href="#songs">
+              <ion-icon slot="start" name="musical-notes"></ion-icon>
+              <ion-label>Songs</ion-label>
+            </ion-item>
+            <ion-item href="#testimonies">
+              <ion-icon slot="start" name="people"></ion-icon>
+              <ion-label>Testimonies</ion-label>
+            </ion-item>
+            <ion-item href="#prayer">
+              <ion-icon slot="start" name="heart"></ion-icon>
+              <ion-label>Prayer Request</ion-label>
+            </ion-item>
+            <ion-item href="#choir">
+              <ion-icon slot="start" name="library"></ion-icon>
+              <ion-label>Choir Resources</ion-label>
+            </ion-item>
+            <ion-item href="#about">
+              <ion-icon slot="start" name="information-circle"></ion-icon>
+              <ion-label>About</ion-label>
+            </ion-item>
+            <ion-item href="#contact">
+              <ion-icon slot="start" name="mail"></ion-icon>
+              <ion-label>Contact</ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-menu>
 
-        <!-- Main Content -->
-        <div class="ion-page" id="main-content">
-            <ion-header>
-                <ion-toolbar color="primary">
-                    <ion-buttons slot="start">
-                        <ion-menu-button></ion-menu-button>
+      <!-- Main Content -->
+      <div class="ion-page" id="main-content">
+        <ion-header>
+          <ion-toolbar color="primary">
+            <ion-buttons slot="start">
+              <ion-menu-button></ion-menu-button>
+            </ion-buttons>
+            <ion-title>Redemption Voices</ion-title>
+          </ion-toolbar>
+        </ion-header>
+
+        <ion-content>
+          <!-- Content sections will be dynamically loaded here -->
+          <ion-router-outlet></ion-router-outlet>
+
+          <!-- Messages content section -->
+          <div id="messages-content" style="display: none">
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title>Messages</ion-card-title>
+                <ion-card-subtitle
+                  >Listen to our latest messages</ion-card-subtitle
+                >
+              </ion-card-header>
+
+              <!-- Audio Player -->
+              <div class="audio-player">
+                <audio id="mainAudio" src="">
+                  Your browser does not support the audio element.
+                </audio>
+
+                <ion-toolbar color="primary" class="player-controls">
+                  <div class="player-wrapper">
+                    <ion-buttons slot="start" class="control-group">
+                      <ion-button class="control-button">
+                        <ion-icon
+                          slot="icon-only"
+                          name="play-skip-back"
+                        ></ion-icon>
+                      </ion-button>
                     </ion-buttons>
-                    <ion-title>Redemption Voices</ion-title>
-                </ion-toolbar>
-            </ion-header>
 
-            <ion-content>
-                <!-- Content sections will be dynamically loaded here -->
-                <ion-router-outlet></ion-router-outlet>
-                
-                <div id="choir-content" style="display: none; position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
-                    <iframe 
-                        src="https://jongleurzone.com/" 
-                        style="width: 100%; height: 100%; border: none; position: absolute;"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                    </iframe>
+                    <ion-buttons slot="secondary" class="control-group center">
+                      <ion-button id="playPauseBtn" class="control-button main">
+                        <ion-icon
+                          slot="icon-only"
+                          name="play"
+                          id="playPauseIcon"
+                        ></ion-icon>
+                      </ion-button>
+                    </ion-buttons>
+
+                    <ion-buttons slot="end" class="control-group">
+                      <ion-button class="control-button">
+                        <ion-icon
+                          slot="icon-only"
+                          name="play-skip-forward"
+                        ></ion-icon>
+                      </ion-button>
+                    </ion-buttons>
+                  </div>
+                </ion-toolbar>
+              </div>
+            </ion-card>
+          </div>
+
+          <!-- Bible content section -->
+          <div id="bible-content" style="display: none;">
+            <div class="bible-iframe-wrapper">
+              <iframe 
+                src="https://www.bible.com/bible/1/JHN.3.KJV"
+                title="Bible.com - King James Version"
+                class="bible-iframe"
+                allow="clipboard-write"
+                loading="lazy">
+              </iframe>
+            </div>
+          </div>
+
+          <!-- Updated choir content -->
+          <div
+            id="choir-content"
+            style="
+              display: none;
+              position: fixed;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              z-index: 1000;
+            "
+          >
+            <iframe
+              src="https://jongleurzone.com/"
+              style="width: 100%; height: 100%; border: none"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            >
+            </iframe>
+          </div>
+
+          <!-- Prayer content section -->
+          <div id="prayer-content" style="display: none">
+            <ion-card class="prayer-card">
+              <ion-card-header>
+                <ion-card-title>Prayer Request</ion-card-title>
+              </ion-card-header>
+
+              <ion-card-content>
+                <blockquote class="bible-verse">
+                  "Confess your faults one to another, and pray one for another,
+                  that ye may be healed. The effectual fervent prayer of a
+                  righteous man availeth much."
+                  <footer>- James 5:16 (KJV)</footer>
+                </blockquote>
+
+                <form
+                  action="https://formspree.io/f/your-formspree-id"
+                  method="POST"
+                  class="prayer-form"
+                >
+                  <ion-item lines="full">
+                    <ion-label position="floating">Your Name</ion-label>
+                    <ion-input type="text" name="name" required></ion-input>
+                  </ion-item>
+
+                  <ion-item lines="full">
+                    <ion-label position="floating">Prayer Request</ion-label>
+                    <ion-textarea
+                      name="prayer_request"
+                      rows="4"
+                      placeholder="Share your prayer request..."
+                      required
+                    >
+                    </ion-textarea>
+                  </ion-item>
+
+                  <ion-button
+                    type="submit"
+                    expand="block"
+                    class="submit-button"
+                  >
+                    <ion-icon slot="start" name="paper-plane"></ion-icon>
+                    Submit Prayer Request
+                  </ion-button>
+                </form>
+              </ion-card-content>
+            </ion-card>
+          </div>
+
+          <!-- About content section -->
+          <div id="about-content" style="display: none">
+            <ion-card class="about-card">
+              <ion-card-header>
+                <ion-card-title>About Redemption Voices</ion-card-title>
+              </ion-card-header>
+
+              <ion-card-content>
+                <blockquote class="bible-verse">
+                  "Speaking to yourselves in psalms and hymns and spiritual songs, singing and making melody in your heart to the Lord"
+                  <footer>- Ephesians 5:19 (KJV)</footer>
+                </blockquote>
+
+                <div class="about-sections">
+                  <section class="mission-section">
+                    <h2><ion-icon name="heart-outline"></ion-icon> Our Mission</h2>
+                    <p>Redemption Voices exists to spread the gospel through music, messages, and ministry. We aim to create a platform where believers can access spiritual resources, share testimonies, and grow together in faith.</p>
+                  </section>
+
+                  <section class="values-section">
+                    <h2><ion-icon name="diamond-outline"></ion-icon> Our Values</h2>
+                    <ul>
+                      <li>Biblical Truth and Sound Doctrine</li>
+                      <li>Excellence in Music Ministry</li>
+                      <li>Prayer and Spiritual Growth</li>
+                      <li>Community and Fellowship</li>
+                    </ul>
+                  </section>
+
+                  <section class="services-section">
+                    <h2><ion-icon name="gift-outline"></ion-icon> What We Offer</h2>
+                    <div class="services-grid">
+                      <div class="service-item">
+                        <ion-icon name="book"></ion-icon>
+                        <h3>Bible Study</h3>
+                        <p>Access to KJV Bible with study resources</p>
+                      </div>
+                      <div class="service-item">
+                        <ion-icon name="musical-notes"></ion-icon>
+                        <h3>Music Ministry</h3>
+                        <p>Choir resources and spiritual songs</p>
+                      </div>
+                      <div class="service-item">
+                        <ion-icon name="people"></ion-icon>
+                        <h3>Prayer Support</h3>
+                        <p>Submit prayer requests and testimonies</p>
+                      </div>
+                      <div class="service-item">
+                        <ion-icon name="mic"></ion-icon>
+                        <h3>Messages</h3>
+                        <p>Access to spiritual messages and teachings</p>
+                      </div>
+                    </div>
+                  </section>
                 </div>
-            </ion-content>
+              </ion-card-content>
+            </ion-card>
+          </div>
 
-            <ion-footer>
-                <ion-toolbar>
-                    <ion-title size="small" class="ion-text-center">
-                        © <span id="currentYear"></span> Redemption Voices. All rights reserved.
-                    </ion-title>
-                    <ion-text class="ion-text-center" style="display: block; margin-top: 8px; margin-bottom: 8px;">
-                        Crafted with <i class="fa-solid fa-heart" style="color: #ff4b4b;"></i> by 
-                        <a href="https://femithetechguy.com" target="_blank" style="text-decoration: none; color: var(--ion-color-primary);">Tech Guy</a>
-                    </ion-text>
-                </ion-toolbar>
-            </ion-footer>
-        </div>
+          <!-- Contact content section -->
+          <div id="contact-content" style="display: none">
+            <ion-card class="contact-card">
+              <ion-card-header>
+                <ion-card-title>Contact Us</ion-card-title>
+              </ion-card-header>
+
+              <ion-card-content>
+                <div class="social-links">
+                  <a
+                    href="https://instagram.com/redemption_voices"
+                    class="social-link"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <i class="fab fa-instagram"></i>
+                    <span>Follow us on Instagram</span>
+                  </a>
+
+                  <a href="mailto:info@redemptionvoices.com" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Send us an email</span>
+                  </a>
+
+                  <a
+                    href="https://www.youtube.com/@redemptionvoices"
+                    class="social-link"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <i class="fab fa-youtube"></i>
+                    <span>Subscribe on YouTube</span>
+                  </a>
+                </div>
+
+                <div class="scripture-verses">
+                  <blockquote class="bible-verse">
+                    "And they departed from the presence of the council,
+                    rejoicing that they were counted worthy to suffer shame for
+                    his name."
+                    <footer>- Acts 5:41 (KJV)</footer>
+                  </blockquote>
+
+                  <blockquote class="bible-verse">
+                    "How then shall they call on him in whom they have not
+                    believed? and how shall they believe in him of whom they
+                    have not heard? and how shall they hear without a preacher?"
+                    <footer>- Romans 10:14 (KJV)</footer>
+                  </blockquote>
+                </div>
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </ion-content>
+
+        <ion-footer>
+          <ion-toolbar>
+            <ion-title size="small" class="ion-text-center">
+              © <span id="currentYear"></span> Redemption Voices. All rights
+              reserved.
+            </ion-title>
+            <ion-text
+              class="ion-text-center"
+              style="display: block; margin-top: 8px; margin-bottom: 8px"
+            >
+              Crafted with
+              <i class="fa-solid fa-heart" style="color: #ff4b4b"></i> by
+              <a
+                href="https://femithetechguy.com"
+                target="_blank"
+                style="text-decoration: none; color: var(--ion-color-primary)"
+                >Tech Guy</a
+              >
+            </ion-text>
+          </ion-toolbar>
+        </ion-footer>
+      </div>
     </ion-app>
 
-    <!-- Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('js/service-worker.js')
-                    .then(reg => console.log('Service Worker registered'))
-                    .catch(err => console.log('Service Worker not registered', err));
-            });
-        }
-    </script>
-
-    <script>
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        document.querySelector('ion-item[href="#choir"]').addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const choirContent = document.getElementById('choir-content');
-            choirContent.style.display = 'block';
-            
-            // Close the menu
-            const menu = document.querySelector('ion-menu');
-            menu.close();
-        });
-        
-        // Handle back navigation
-        window.addEventListener('popstate', function() {
-            document.querySelector('ion-router-outlet').style.display = 'block';
-            document.getElementById('choir-content').style.display = 'none';
-        });
-    </script>
-</body>
+    <!-- JavaScript -->
+    <script type="module" src="js/app.js"></script>
+  </body>
 </html>
