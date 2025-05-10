@@ -254,40 +254,33 @@
 
               <!-- Audio Player -->
               <div class="audio-player">
-                <audio id="mainAudio" src="">
-                  Your browser does not support the audio element.
-                </audio>
+                <audio id="mainAudio"></audio>
+                
+                <div class="track-info">
+                    <h3 id="trackTitle"></h3>
+                    <p id="trackArtist"></p>
+                </div>
 
                 <ion-toolbar color="primary" class="player-controls">
-                  <div class="player-wrapper">
-                    <ion-buttons slot="start" class="control-group">
-                      <ion-button class="control-button">
-                        <ion-icon
-                          slot="icon-only"
-                          name="play-skip-back"
-                        ></ion-icon>
-                      </ion-button>
-                    </ion-buttons>
+                    <div class="player-wrapper">
+                        <ion-buttons slot="start" class="control-group">
+                            <ion-button id="prevBtn" class="control-button">
+                                <ion-icon slot="icon-only" name="play-skip-back"></ion-icon>
+                            </ion-button>
+                        </ion-buttons>
 
-                    <ion-buttons slot="secondary" class="control-group center">
-                      <ion-button id="playPauseBtn" class="control-button main">
-                        <ion-icon
-                          slot="icon-only"
-                          name="play"
-                          id="playPauseIcon"
-                        ></ion-icon>
-                      </ion-button>
-                    </ion-buttons>
+                        <ion-buttons slot="end" class="control-group center">
+                            <ion-button id="playPauseBtn" class="control-button main">
+                                <ion-icon slot="icon-only" name="play" id="playPauseIcon"></ion-icon>
+                            </ion-button>
+                        </ion-buttons>
 
-                    <ion-buttons slot="end" class="control-group">
-                      <ion-button class="control-button">
-                        <ion-icon
-                          slot="icon-only"
-                          name="play-skip-forward"
-                        ></ion-icon>
-                      </ion-button>
-                    </ion-buttons>
-                  </div>
+                        <ion-buttons slot="end" class="control-group">
+                            <ion-button id="nextBtn" class="control-button">
+                                <ion-icon slot="icon-only" name="play-skip-forward"></ion-icon>
+                            </ion-button>
+                        </ion-buttons>
+                    </div>
                 </ion-toolbar>
               </div>
             </ion-card>

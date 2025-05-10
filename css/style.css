@@ -288,6 +288,11 @@ ion-card {
     border-radius: 8px;
 }
 
+.player-controls {
+    --background: transparent;
+    --border-radius: 8px;
+}
+
 .player-controls ion-button {
     --padding-start: 20px;
     --padding-end: 20px;
@@ -312,6 +317,22 @@ ion-item.playing ion-icon {
     background: var(--ion-color-light);
     border-radius: 8px;
     margin: 16px;
+}
+
+.track-info {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.track-info h3 {
+    margin: 0;
+    color: var(--ion-color-dark);
+}
+
+.track-info p {
+    margin: 4px 0 0;
+    color: var(--ion-color-medium);
+    font-size: 0.9em;
 }
 
 .audio-player.loading {
