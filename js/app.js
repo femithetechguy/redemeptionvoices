@@ -11,6 +11,7 @@ class App {
             this.setupYear();
             this.setupAudio();
             this.setupRouting();
+            this.setupFeatureCards();
         });
     }
 
@@ -37,15 +38,31 @@ class App {
         });
     }
 
+    setupFeatureCards() {
+        const featureCards = document.querySelectorAll('.feature-card[button]');
+        featureCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const section = card.getAttribute('data-section');
+                if (section) {
+                    this.handleNavigation(`#${section}`);
+                }
+            });
+        });
+    }
+
     handleNavigation(route) {
-        // Update sections array to include about-content
-        const sections = ['messages-content', 'choir-content', 'bible-content', 'prayer-content', 'contact-content', 'about-content'];
+        // Add home-content to sections array
+        const sections = ['home-content', 'messages-content', 'choir-content', 'bible-content', 'prayer-content', 'contact-content', 'about-content', 'testimonies-content'];
         sections.forEach(id => {
             document.getElementById(id).style.display = 'none';
         });
 
         // Show selected section
         switch(route) {
+            case '#home':
+            case '':  // Default route
+                document.getElementById('home-content').style.display = 'block';
+                break;
             case '#messages':
                 document.getElementById('messages-content').style.display = 'block';
                 break;
@@ -54,7 +71,6 @@ class App {
                 break;
             case '#bible':
                 document.getElementById('bible-content').style.display = 'block';
-                // Remove loadBibleContent() call since we're using iframe
                 break;
             case '#prayer':
                 document.getElementById('prayer-content').style.display = 'block';
@@ -64,6 +80,9 @@ class App {
                 break;
             case '#about':
                 document.getElementById('about-content').style.display = 'block';
+                break;
+            case '#testimonies':
+                document.getElementById('testimonies-content').style.display = 'block';
                 break;
         }
 
