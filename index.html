@@ -102,12 +102,6 @@
     <ion-app>
       <!-- Menu Component -->
       <ion-menu side="start" content-id="main-content">
-        <ion-header>
-          <ion-toolbar color="primary">
-            <ion-title>Menu</ion-title>
-          </ion-toolbar>
-        </ion-header>
-
         <ion-content>
           <ion-list>
             <ion-item href="#home">
@@ -164,6 +158,87 @@
         <ion-content>
           <!-- Content sections will be dynamically loaded here -->
           <ion-router-outlet></ion-router-outlet>
+
+          <!-- Home content section -->
+          <div id="home-content">
+            <!-- Hero Section -->
+            <div class="hero-section">
+              <h1>Welcome to Redemption Voices</h1>
+              <p class="hero-verse">
+                "Make a joyful noise unto the Lord, all ye lands."<br />
+                <span>- Psalm 100:1 (KJV)</span>
+              </p>
+            </div>
+
+            <!-- Feature Cards Grid -->
+            <div class="features-grid">
+              <!-- Bible Study Card -->
+              <ion-card class="feature-card" button data-section="bible">
+                <ion-card-header>
+                  <ion-icon name="book-outline"></ion-icon>
+                  <ion-card-title>Bible Study</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  Access the King James Bible and study resources
+                </ion-card-content>
+              </ion-card>
+
+              <!-- Messages Card -->
+              <ion-card class="feature-card" button data-section="messages">
+                <ion-card-header>
+                  <ion-icon name="mic-outline"></ion-icon>
+                  <ion-card-title>Messages</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  Listen to inspiring sermons and teachings
+                </ion-card-content>
+              </ion-card>
+
+              <!-- Prayer Request Card -->
+              <ion-card class="feature-card" button data-section="prayer">
+                <ion-card-header>
+                  <ion-icon name="heart-outline"></ion-icon>
+                  <ion-card-title>Prayer Requests</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  Submit your prayer requests and join in prayer
+                </ion-card-content>
+              </ion-card>
+
+              <!-- Choir Resources Card -->
+              <ion-card class="feature-card" button data-section="choir">
+                <ion-card-header>
+                  <ion-icon name="musical-notes-outline"></ion-icon>
+                  <ion-card-title>Choir Resources</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  Access sheet music and rehearsal resources
+                </ion-card-content>
+              </ion-card>
+
+              <!-- Testimonies Card -->
+              <ion-card class="feature-card" button data-section="testimonies">
+                <ion-card-header>
+                  <ion-icon name="megaphone-outline"></ion-icon>
+                  <ion-card-title>Testimonies</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  Share and read inspiring testimonies
+                </ion-card-content>
+              </ion-card>
+
+              <!-- Contact Card -->
+              <ion-card class="feature-card" button data-section="contact">
+                <ion-card-header>
+                  <ion-icon name="mail-outline"></ion-icon>
+                  <ion-card-title>Contact</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  Get in touch with us
+                </ion-card-content>
+              </ion-card>
+            </div>
+          </div>
 
           <!-- Messages content section -->
           <div id="messages-content" style="display: none">
@@ -294,6 +369,50 @@
                   >
                     <ion-icon slot="start" name="paper-plane"></ion-icon>
                     Submit Prayer Request
+                  </ion-button>
+                </form>
+              </ion-card-content>
+            </ion-card>
+          </div>
+
+          <!-- Testimonies content section -->
+          <div id="testimonies-content" style="display: none">
+            <ion-card class="testimonies-card">
+              <ion-card-header>
+                <ion-card-title>Share Your Testimony</ion-card-title>
+              </ion-card-header>
+
+              <ion-card-content>
+                <blockquote class="bible-verse">
+                  "And he departed, and began to publish in Decapolis how great things Jesus had done for him: 
+                  and all men did marvel."
+                  <footer>- Mark 5:20 (KJV)</footer>
+                </blockquote>
+
+                <form action="https://formspree.io/f/your-formspree-id" method="POST" class="testimony-form">
+                  <ion-item lines="full">
+                    <ion-label position="floating">Your Name</ion-label>
+                    <ion-input type="text" name="name" required></ion-input>
+                  </ion-item>
+
+                  <ion-item lines="full">
+                    <ion-label position="floating">Location</ion-label>
+                    <ion-input type="text" name="location" required></ion-input>
+                  </ion-item>
+
+                  <ion-item lines="full">
+                    <ion-label position="floating">Your Testimony</ion-label>
+                    <ion-textarea 
+                      name="testimony" 
+                      rows="6" 
+                      placeholder="Share what the Lord has done..."
+                      required>
+                    </ion-textarea>
+                  </ion-item>
+
+                  <ion-button type="submit" expand="block" class="submit-button">
+                    <ion-icon slot="start" name="paper-plane"></ion-icon>
+                    Share Testimony
                   </ion-button>
                 </form>
               </ion-card-content>
