@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-style"="black-translucent">
     <meta name="theme-color" content="#4a90e2">
     <title>Redemption Voices</title>
     
@@ -15,6 +15,9 @@
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"/>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <ion-app>
@@ -75,6 +78,18 @@
                 <!-- Content sections will be dynamically loaded here -->
                 <ion-router-outlet></ion-router-outlet>
             </ion-content>
+
+            <ion-footer>
+                <ion-toolbar>
+                    <ion-title size="small" class="ion-text-center">
+                        © <span id="currentYear"></span> Redemption Voices. All rights reserved.
+                    </ion-title>
+                    <ion-text class="ion-text-center" style="display: block; margin-top: 8px; margin-bottom: 8px;">
+                        Crafted with <i class="fa-solid fa-heart" style="color: #ff4b4b;"></i> by 
+                        <a href="https://femithetechguy.com" target="_blank" style="text-decoration: none; color: var(--ion-color-primary);">Tech Guy</a>
+                    </ion-text>
+                </ion-toolbar>
+            </ion-footer>
         </div>
     </ion-app>
 
@@ -87,6 +102,10 @@
                     .catch(err => console.log('Service Worker not registered', err));
             });
         }
+    </script>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
