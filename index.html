@@ -1,15 +1,15 @@
-/index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#4a90e2">
     <title>Redemption Voices</title>
     
-    <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#4a90e2">
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
     
     <!-- Ionic Framework -->
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
@@ -82,7 +82,7 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
+                navigator.serviceWorker.register('js/service-worker.js')
                     .then(reg => console.log('Service Worker registered'))
                     .catch(err => console.log('Service Worker not registered', err));
             });

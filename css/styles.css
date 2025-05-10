@@ -1,0 +1,183 @@
+:root {
+    --ion-color-primary: #4a90e2;
+    --ion-color-primary-rgb: 74, 144, 226;
+    --ion-color-primary-contrast: #ffffff;
+    --ion-color-primary-shade: #417fc7;
+    --ion-background-color: #ffffff;
+    --ion-text-color: #000000;
+}
+
+/* Responsive Typography */
+html {
+    font-size: 16px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 18px;
+    }
+}
+
+/* Custom Menu Styles */
+ion-menu {
+    --width: 280px;
+    --max-width: 80vw;
+}
+
+ion-item {
+    --padding-start: 16px;
+    --min-height: 48px;
+}
+
+/* Content Containers */
+.content-container {
+    padding: 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Card Styles */
+ion-card {
+    margin: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Grid Layout */
+.grid-container {
+    display: grid;
+    gap: 16px;
+    padding: 16px;
+}
+
+@media (min-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Loading States */
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
+/* Form Elements */
+ion-input, ion-textarea {
+    --padding-start: 16px;
+    --padding-end: 16px;
+    margin-bottom: 16px;
+}
+
+/* Custom Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* iOS Specific Fixes */
+@supports (-webkit-touch-callout: none) {
+    ion-content {
+        --keyboard-offset: 0 !important;
+    }
+    
+    input, textarea {
+        font-size: 16px !important;
+    }
+}
+
+/* iOS Safe Area Support */
+ion-header {
+    padding-top: env(safe-area-inset-top);
+}
+
+ion-footer {
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+ion-menu ion-content {
+    --padding-top: env(safe-area-inset-top);
+    --padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Fix for iOS input zoom */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+    font-size: 16px !important;
+}
+
+/* Fix for content height on iOS */
+ion-content {
+    --overflow: hidden;
+}
+
+/* Smooth scrolling for both platforms */
+.scroll-content {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Improve touch targets for better mobile usability */
+ion-item {
+    --min-height: 50px;
+    cursor: pointer;
+}
+
+ion-button {
+    --padding-top: 1rem;
+    --padding-bottom: 1rem;
+}
+
+/* Fix for mobile tap highlight */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Fix for iOS momentum scrolling */
+.ios ion-content {
+    --keyboard-offset: 0 !important;
+}
+
+/* Typography Styles */
+ion-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+ion-label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+}
+
+p, span, div {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+}
+
+/* Menu Item Hover Effect */
+ion-item {
+    --transition: background-color 0.3s ease;
+}
+
+ion-item:hover {
+    --background: rgba(var(--ion-color-primary-rgb), 0.1);
+}
