@@ -12,6 +12,11 @@ class App {
             this.setupAudio();
             this.setupRouting();
             this.setupFeatureCards();
+
+            // Add header title click handler
+            window.addEventListener('navigate', (event) => {
+                this.handleNavigation(event.detail);
+            });
         });
     }
 
