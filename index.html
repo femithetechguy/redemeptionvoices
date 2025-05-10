@@ -81,6 +81,15 @@
             <ion-content>
                 <!-- Content sections will be dynamically loaded here -->
                 <ion-router-outlet></ion-router-outlet>
+                
+                <div id="choir-content" style="display: none; position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
+                    <iframe 
+                        src="https://jongleurzone.com/" 
+                        style="width: 100%; height: 100%; border: none; position: absolute;"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
             </ion-content>
 
             <ion-footer>
@@ -110,6 +119,64 @@
 
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        document.querySelector('ion-item[href="#choir"]').addEventListener('click', async function(e) {
+            e.preventDefault();
+            
+            // Hide router outlet
+            document.querySelector('ion-router-outlet').style.display = 'none';
+            
+            // Create and show loading indicator
+            const loading = document.createElement('ion-loading');
+            loading.message = 'Loading Choir Resources...';
+            document.body.appendChild(loading);
+            await loading.present();
+            
+            try {
+                // Show choir content
+                const choirContent = document.getElementById('choir-content');
+                const iframe = choirContent.querySelector('iframe');
+                
+                // Set up a timeout to dismiss loading after 5 seconds if iframe doesn't load
+                const timeoutPromise = new Promise((resolve) => {
+                    setTimeout(() => resolve(), 5000);
+                });
+                
+                // Set up iframe load promise
+                const iframeLoadPromise = new Promise((resolve) => {
+                    iframe.onload = () => resolve();
+                });
+                
+                // Wait for either iframe to load or timeout
+                await Promise.race([iframeLoadPromise, timeoutPromise]);
+                
+                // Dismiss loading and show content
+                await loading.dismiss();
+                choirContent.style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error loading choir resources:', error);
+                await loading.dismiss();
+                
+                // Show error message to user
+                const alert = document.createElement('ion-alert');
+                alert.header = 'Error';
+                alert.message = 'Unable to load choir resources. Please try again later.';
+                alert.buttons = ['OK'];
+                document.body.appendChild(alert);
+                await alert.present();
+            }
+            
+            // Close the menu on mobile
+            const menu = document.querySelector('ion-menu');
+            menu.close();
+        });
+        
+        // Handle back navigation
+        window.addEventListener('popstate', function() {
+            document.querySelector('ion-router-outlet').style.display = 'block';
+            document.getElementById('choir-content').style.display = 'none';
+        });
     </script>
 </body>
 </html>
