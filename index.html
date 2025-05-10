@@ -1,0 +1,92 @@
+/index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redemption Voices</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#4a90e2">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    
+    <!-- Ionic Framework -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"/>
+</head>
+<body>
+    <ion-app>
+        <!-- Menu Component -->
+        <ion-menu side="start" content-id="main-content">
+            <ion-header>
+                <ion-toolbar color="primary">
+                    <ion-title>Menu</ion-title>
+                </ion-toolbar>
+            </ion-header>
+
+            <ion-content>
+                <ion-list>
+                    <ion-item href="#home">
+                        <ion-icon slot="start" name="home"></ion-icon>
+                        <ion-label>Home</ion-label>
+                    </ion-item>
+                    <ion-item href="#messages">
+                        <ion-icon slot="start" name="chatbox"></ion-icon>
+                        <ion-label>Messages</ion-label>
+                    </ion-item>
+                    <ion-item href="#songs">
+                        <ion-icon slot="start" name="musical-notes"></ion-icon>
+                        <ion-label>Songs</ion-label>
+                    </ion-item>
+                    <ion-item href="#testimonies">
+                        <ion-icon slot="start" name="people"></ion-icon>
+                        <ion-label>Testimonies</ion-label>
+                    </ion-item>
+                    <ion-item href="#prayer">
+                        <ion-icon slot="start" name="heart"></ion-icon>
+                        <ion-label>Prayer Request</ion-label>
+                    </ion-item>
+                    <ion-item href="#about">
+                        <ion-icon slot="start" name="information-circle"></ion-icon>
+                        <ion-label>About</ion-label>
+                    </ion-item>
+                    <ion-item href="#contact">
+                        <ion-icon slot="start" name="mail"></ion-icon>
+                        <ion-label>Contact</ion-label>
+                    </ion-item>
+                </ion-list>
+            </ion-content>
+        </ion-menu>
+
+        <!-- Main Content -->
+        <div class="ion-page" id="main-content">
+            <ion-header>
+                <ion-toolbar color="primary">
+                    <ion-buttons slot="start">
+                        <ion-menu-button></ion-menu-button>
+                    </ion-buttons>
+                    <ion-title>Redemption Voices</ion-title>
+                </ion-toolbar>
+            </ion-header>
+
+            <ion-content>
+                <!-- Content sections will be dynamically loaded here -->
+                <ion-router-outlet></ion-router-outlet>
+            </ion-content>
+        </div>
+    </ion-app>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('Service Worker registered'))
+                    .catch(err => console.log('Service Worker not registered', err));
+            });
+        }
+    </script>
+</body>
+</html>
