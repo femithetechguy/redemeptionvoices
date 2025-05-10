@@ -143,7 +143,7 @@ textarea {
 
 /* Fix for content height on iOS */
 ion-content {
-    --overflow: hidden;
+    --overflow: auto;
 }
 
 /* Smooth scrolling for both platforms */
@@ -517,6 +517,22 @@ ion-icon {
     --border-radius: 8px;
 }
 
+@media screen and (max-width: 576px) {
+    ion-input, ion-textarea {
+        --padding-start: 8px;
+        --padding-end: 8px;
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+
+    .prayer-form ion-item {
+        margin: 8px 0;
+    }
+
+    .submit-button {
+        margin: 16px 0;
+    }
+}
+
 /* Responsive adjustments */
 @media (width <= 576px) {
     #prayer-content {
@@ -557,6 +573,16 @@ ion-icon {
 .testimony-form .submit-button {
     margin-top: 24px;
     --border-radius: 8px;
+}
+
+@media screen and (max-width: 576px) {
+    .testimony-form ion-item {
+        margin: 8px 0;
+    }
+
+    .submit-button {
+        margin: 16px 0;
+    }
 }
 
 @media (width <= 576px) {
@@ -796,9 +822,21 @@ ion-icon {
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: 1fr;
     gap: 16px;
-    padding: 16px 0;
+    padding: 16px;
+}
+
+@media screen and (min-width: 576px) {
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 .feature-card {
@@ -806,6 +844,11 @@ ion-icon {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     border: 1px solid var(--ion-color-light);
     box-shadow: none !important;
+    width: 100%;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease;
 }
 
 .feature-card:hover {
@@ -854,6 +897,45 @@ ion-icon {
     transform: translate(-50%, -50%) scale(2);
 }
 
+@media screen and (max-width: 576px) {
+    ion-content {
+        --padding-start: 0;
+        --padding-end: 0;
+    }
+
+    .header-title {
+        font-size: 1.2rem;
+    }
+
+    .hero-section {
+        padding: 24px 16px;
+    }
+
+    .hero-section h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-verse {
+        font-size: 1rem;
+    }
+
+    /* Improve touch targets */
+    .control-button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    /* Stack menu items vertically */
+    ion-menu ion-content {
+        --padding-top: 20px;
+    }
+
+    ion-menu ion-item {
+        --padding-start: 16px;
+        --min-height: 50px;
+    }
+}
+
 @media (width <= 576px) {
     .hero-section {
         padding: 32px 16px;
@@ -880,4 +962,31 @@ ion-icon {
 
 .header-title:active {
     opacity: 0.7;
+}
+
+/* Container Styles */
+.lh-container {
+    width: 100%;
+    padding: 0 15px;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+/* Mobile-First Media Queries */
+@media screen and (min-width: 576px) {
+    .lh-container {
+        max-width: 540px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .lh-container {
+        max-width: 720px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .lh-container {
+        max-width: 960px;
+    }
 }
