@@ -1,110 +1,171 @@
-export class AudioPlayer {
+export default class AudioPlayer {
     constructor() {
-        // Wait for DOM to be ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => this.init());
-        } else {
-            this.init();
-        }
-    }
-
-    init() {
-        // Get DOM elements
-        this.audio = document.getElementById('mainAudio');
-        this.playPauseIcon = document.getElementById('playPauseIcon');
+        this.proxyUrl = 'http://localhost:3000/audio';
+        this.playlist = [
+            {
+                title: "The Power of Faith",
+                artist: "Pastor John",
+                fileId: "18aYsElBNO1xpoe9dMDiTD9FhhnASNNAa",
+                duration: "45:30"
+            }
+        ];
         
-        if (!this.audio || !this.playPauseIcon) {
-            console.error('Required audio elements not found');
-            return;
-        }
-
-        this.pressTimer = null;
+        this.currentTrackIndex = 0;
         this.isLongPress = false;
+        this.pressTimer = null;
+        this.audio = null;
         this.initialize();
     }
 
+    getGoogleDriveDirectLink(fileId) {
+        return `${this.proxyUrl}/${fileId}`;
+    }
+
     initialize() {
-        // Query elements after ensuring they exist
-        const playPauseBtn = document.querySelector('#playPauseBtn');
-        const skipBackBtn = document.querySelector('.player-controls ion-buttons[slot="start"] ion-button');
-        const skipForwardBtn = document.querySelector('.player-controls ion-buttons[slot="end"] ion-button');
-
-        if (!playPauseBtn || !skipBackBtn || !skipForwardBtn) {
-            console.error('Required control buttons not found');
-            return;
-        }
-
-        // Add event listeners
-        playPauseBtn.addEventListener('click', () => this.togglePlay());
-
-        this.setupSkipControls(skipBackBtn, skipForwardBtn);
-        this.setupAudioListeners();
-    }
-
-    setupSkipControls(skipBackBtn, skipForwardBtn) {
-        const events = ['touchstart', 'mousedown', 'touchend', 'mouseup'];
+        this.audio = new Audio();
+        this.audio.preload = 'auto';
         
-        events.forEach(event => {
-            if (event.includes('start') || event.includes('down')) {
-                skipBackBtn.addEventListener(event, (e) => this.handleSkipBackPress(e));
-                skipForwardBtn.addEventListener(event, (e) => this.handleSkipForwardPress(e));
-            } else {
-                skipBackBtn.addEventListener(event, (e) => this.handlePressRelease(e, 'back'));
-                skipForwardBtn.addEventListener(event, (e) => this.handlePressRelease(e, 'forward'));
-            }
-        });
+        // Get DOM elements
+        this.playPauseIcon = document.getElementById('playPauseIcon');
+        this.trackTitle = document.getElementById('trackTitle');
+        this.trackArtist = document.getElementById('trackArtist');
+        
+        // Add audio event listeners
+        this.audio.addEventListener('play', () => this.onPlay());
+        this.audio.addEventListener('pause', () => this.onPause());
+        this.audio.addEventListener('ended', () => this.onEnded());
+        this.audio.addEventListener('error', (e) => this.onError(e));
+        this.audio.addEventListener('loadstart', () => this.onLoadStart());
+        this.audio.addEventListener('canplay', () => this.onCanPlay());
+        
+        this.setupControls();
+        this.loadTrack(this.currentTrackIndex);
     }
 
-    setupAudioListeners() {
-        this.audio.addEventListener('play', () => {
-            this.playPauseIcon.setAttribute('name', 'pause');
-        });
+    onPlay() {
+        this.playPauseIcon.name = 'pause';
+    }
 
-        this.audio.addEventListener('pause', () => {
-            this.playPauseIcon.setAttribute('name', 'play');
-        });
+    onPause() {
+        this.playPauseIcon.name = 'play';
+    }
 
-        this.audio.addEventListener('ended', () => {
-            this.playPauseIcon.setAttribute('name', 'play');
-        });
+    onEnded() {
+        this.nextTrack();
+    }
 
-        this.audio.addEventListener('error', () => {
-            this.playPauseIcon.setAttribute('name', 'play');
-            console.error('Audio error:', this.audio.error);
-        });
+    onError(e) {
+        console.error('Audio error:', e);
+        this.playPauseIcon.name = 'play';
+    }
+
+    onLoadStart() {
+        // Add loading state if needed
+        this.playPauseIcon.name = 'refresh';
+    }
+
+    onCanPlay() {
+        this.playPauseIcon.name = 'play';
     }
 
     togglePlay() {
+        if (this.audio.readyState < 2) { // HAVE_CURRENT_DATA
+            return; // Wait until we have data
+        }
+        
         if (this.audio.paused) {
-            this.audio.play();
+            this.audio.play()
+                .catch(e => console.error('Playback failed:', e));
         } else {
             this.audio.pause();
         }
     }
 
-    handleSkipBackPress(event) {
+    loadTrack(index) {
+        const track = this.playlist[index];
+        
+        // Reset audio element
+        this.audio.pause();
+        this.audio.currentTime = 0;
+        
+        // Update source and metadata
+        this.audio.src = this.getGoogleDriveDirectLink(track.fileId);
+        this.trackTitle.textContent = track.title;
+        this.trackArtist.textContent = track.artist;
+        
+        // Add error handling
+        this.audio.onerror = () => {
+            console.error('Error loading track:', track.title);
+            this.onError(new Error('Failed to load audio'));
+        };
+        
+        // Preload audio
+        this.audio.load();
+    }
+
+    setupControls() {
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        // Play/Pause button
+        playPauseBtn.addEventListener('click', () => this.togglePlay());
+
+        // Previous button with long press
+        prevBtn.addEventListener('mousedown', (e) => this.handlePrevPress(e));
+        prevBtn.addEventListener('touchstart', (e) => this.handlePrevPress(e));
+        prevBtn.addEventListener('mouseup', () => this.handlePressRelease('prev'));
+        prevBtn.addEventListener('touchend', () => this.handlePressRelease('prev'));
+
+        // Next button with long press
+        nextBtn.addEventListener('mousedown', (e) => this.handleNextPress(e));
+        nextBtn.addEventListener('touchstart', (e) => this.handleNextPress(e));
+        nextBtn.addEventListener('mouseup', () => this.handlePressRelease('next'));
+        nextBtn.addEventListener('touchend', () => this.handlePressRelease('next'));
+    }
+
+    handlePrevPress(e) {
+        e.preventDefault();
         this.isLongPress = false;
         this.pressTimer = setTimeout(() => {
             this.isLongPress = true;
-            this.audio.currentTime -= 10;
+            this.rewind();
         }, 500);
     }
 
-    handleSkipForwardPress(event) {
+    handleNextPress(e) {
+        e.preventDefault();
         this.isLongPress = false;
         this.pressTimer = setTimeout(() => {
             this.isLongPress = true;
-            this.audio.currentTime += 10;
+            this.fastForward();
         }, 500);
     }
 
-    handlePressRelease(event, direction) {
+    handlePressRelease(action) {
         clearTimeout(this.pressTimer);
         if (!this.isLongPress) {
-            const skipAmount = direction === 'back' ? -10 : 10;
-            this.audio.currentTime += skipAmount;
+            action === 'prev' ? this.previousTrack() : this.nextTrack();
         }
     }
-}
 
-export default AudioPlayer;
+    nextTrack() {
+        this.currentTrackIndex = (this.currentTrackIndex + 1) % this.playlist.length;
+        this.loadTrack(this.currentTrackIndex);
+        if (!this.audio.paused) this.audio.play();
+    }
+
+    previousTrack() {
+        this.currentTrackIndex = (this.currentTrackIndex - 1 + this.playlist.length) % this.playlist.length;
+        this.loadTrack(this.currentTrackIndex);
+        if (!this.audio.paused) this.audio.play();
+    }
+
+    fastForward() {
+        this.audio.currentTime = Math.min(this.audio.currentTime + 10, this.audio.duration);
+    }
+
+    rewind() {
+        this.audio.currentTime = Math.max(this.audio.currentTime - 10, 0);
+    }
+}
