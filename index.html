@@ -73,6 +73,8 @@
       as="style"
     />
 
+    <base target="_self">
+
     <title>Redemption Voices - Church Music & Resources</title>
 
     <!-- Custom CSS -->
@@ -104,7 +106,7 @@
       <ion-menu side="start" content-id="main-content">
         <ion-content>
           <ion-list>
-            <ion-item href="#home">
+            <ion-item href="#home" target="_self">
               <ion-icon slot="start" name="home"></ion-icon>
               <ion-label>Home</ion-label>
             </ion-item>
@@ -175,7 +177,7 @@
             <!-- Feature Cards Grid -->
             <div class="features-grid">
               <!-- Bible Study Card -->
-              <ion-card class="feature-card" button data-section="bible">
+              <ion-card class="feature-card" button data-section="bible" target="_self">
                 <ion-card-header>
                   <ion-icon name="book-outline"></ion-icon>
                   <ion-card-title>Bible Study</ion-card-title>
@@ -540,12 +542,9 @@
             >
               Crafted with
               <i class="fa-solid fa-heart" style="color: #ff4b4b"></i> by
-              <a
-                href="https://femithetechguy.com"
-                target="_blank"
-                style="text-decoration: none; color: var(--ion-color-primary)"
-                >Tech Guy</a
-              >
+              <a href="https://femithetechguy.com" target="_self" rel="noopener">
+                Tech Guy
+              </a>
             </ion-text>
           </ion-toolbar>
         </ion-footer>
