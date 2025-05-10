@@ -12,6 +12,7 @@ class App {
             this.setupAudio();
             this.setupRouting();
             this.setupFeatureCards();
+            this.setupScrolling();
 
             // Add header title click handler
             window.addEventListener('navigate', (event) => {
@@ -53,6 +54,22 @@ class App {
                 }
             });
         });
+    }
+
+    setupScrolling() {
+        const content = document.querySelector('ion-content');
+        content.scrollEvents = true;
+        
+        // Enable native-like scrolling on iOS
+        if (content) {
+            content.addEventListener('ionScrollStart', () => {
+                document.body.classList.add('scroll-active');
+            });
+            
+            content.addEventListener('ionScrollEnd', () => {
+                document.body.classList.remove('scroll-active');
+            });
+        }
     }
 
     handleNavigation(route) {
